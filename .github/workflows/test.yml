@@ -19,4 +19,4 @@ jobs:
       - name: Test
         run: npm run test
         env:
-          - FORCE_COLOR=1
+          FORCE_COLOR: 1
