@@ -1,0 +1,17 @@
+[1m## Links[22m
+
+Literal url: https://example.com
+Markdown link: https://example.com
+With formatting: https://example.com
+PR: https://github.com/vweevers/markdown-to-ansi/pull/1
+Commit: https://github.com/vweevers/markdown-to-ansi/commit/1234567
+Repo: https://github.com/vweevers/markdown-to-ansi
+Package: https://www.npmjs.com/package/markdown-to-ansi
+
+[2m—————————————————————————————————————————————————————————————————————[22m
+
+[1m## Lists, strong and emphasis[22m
+
+- [1mfoo[22m
+- [3mbar[23m
+- [1m[3mbaz[23m[22m
