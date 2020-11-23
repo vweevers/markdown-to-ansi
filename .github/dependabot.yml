@@ -8,3 +8,7 @@ updates:
       - dependency-name: standard
       - dependency-name: depcheck
       - dependency-name: tape
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
