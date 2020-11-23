@@ -1,6 +1,6 @@
 {
   "name": "markdown-to-ansi",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Convert markdown to ansi with support of hyperlinks",
   "license": "MIT",
   "author": "Vincent Weevers",
