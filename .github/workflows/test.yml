@@ -18,3 +18,5 @@ jobs:
         run: npm install
       - name: Test
         run: npm run test
+        env:
+          - FORCE_COLOR=1

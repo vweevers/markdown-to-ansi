@@ -138,6 +138,10 @@ function supportsHyperlinks (stream) {
     return false
   }
 
+  if (process.env.FORCE_HYPERLINK === '1') {
+    return true
+  }
+
   if (!stream.isTTY) {
     return false
   }
