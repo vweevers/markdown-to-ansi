@@ -61,7 +61,7 @@ module.exports = function (options) {
         }
 
         const exit = context.enter('link')
-        const label = isAutolink(node) ? shortUrl(node.url) : phrasing(node, context, {})
+        const label = isAutolink(node, context) ? shortUrl(node.url) : phrasing(node, context, {})
 
         exit()
 
