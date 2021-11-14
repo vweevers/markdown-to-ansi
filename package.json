@@ -29,6 +29,9 @@
     "standard": "^16.0.3",
     "tape": "^5.0.1"
   },
+  "repository": "vweevers/markdown-to-ansi",
+  "bugs": "https://github.com/vweevers/markdown-to-ansi/issues",
+  "homepage": "https://github.com/vweevers/markdown-to-ansi",
   "keywords": [
     "ansi",
     "cli",
