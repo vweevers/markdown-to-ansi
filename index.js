@@ -1,7 +1,7 @@
 import fromMarkdown from 'mdast-util-from-markdown'
 import toMarkdown from 'mdast-util-to-markdown'
 import syntax from 'micromark-extension-gfm-autolink-literal'
-import autolinkLiteral from 'mdast-util-gfm-autolink-literal'
+import { gfmAutolinkLiteralFromMarkdown, gfmAutolinkLiteralToMarkdown } from 'mdast-util-gfm-autolink-literal'
 import { supportsHyperlink as sh } from 'supports-hyperlinks'
 import ansiEscapes from 'ansi-escapes'
 import stripAnsi from 'strip-ansi'
@@ -38,11 +38,11 @@ export default function (options) {
 
   const parserOptions = {
     extensions: [syntax],
-    mdastExtensions: [autolinkLiteral.fromMarkdown]
+    mdastExtensions: [gfmAutolinkLiteralFromMarkdown]
   }
 
   const stringifyOptions = {
-    extensions: [autolinkLiteral.toMarkdown],
+    extensions: [gfmAutolinkLiteralToMarkdown],
     bullet: '-',
     listItemIndent: 'one',
     handlers: {

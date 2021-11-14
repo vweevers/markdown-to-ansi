@@ -16,7 +16,7 @@
     "ansi-escapes": "^5.0.0",
     "chalk": "^4.1.0",
     "mdast-util-from-markdown": "~0.8.1",
-    "mdast-util-gfm-autolink-literal": "~0.1.1",
+    "mdast-util-gfm-autolink-literal": "^1.0.2",
     "mdast-util-to-markdown": "~0.6.2",
     "micromark-extension-gfm-autolink-literal": "~0.5.1",
     "normalize-url": "^7.0.2",
