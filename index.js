@@ -1,17 +1,13 @@
-import fromMarkdown from 'mdast-util-from-markdown'
-import toMarkdown from 'mdast-util-to-markdown'
-import syntax from 'micromark-extension-gfm-autolink-literal'
+import { fromMarkdown } from 'mdast-util-from-markdown'
+import { toMarkdown } from 'mdast-util-to-markdown'
+import { gfmAutolinkLiteral } from 'micromark-extension-gfm-autolink-literal'
 import { gfmAutolinkLiteralFromMarkdown, gfmAutolinkLiteralToMarkdown } from 'mdast-util-gfm-autolink-literal'
+import { toString } from 'mdast-util-to-string'
 import { supportsHyperlink as sh } from 'supports-hyperlinks'
 import ansiEscapes from 'ansi-escapes'
 import stripAnsi from 'strip-ansi'
 import chalk from 'chalk'
 import normalizeUrl from 'normalize-url'
-
-// TODO: avoid internals
-import isAutolink from 'mdast-util-to-markdown/lib/util/format-link-as-autolink.js'
-import phrasing from 'mdast-util-to-markdown/lib/util/container-phrasing.js'
-import defaultHandlers from 'mdast-util-to-markdown/lib/handle/index.js'
 
 const defaultStyle = {
   inlineCode: chalk.cyan,
@@ -37,7 +33,7 @@ export default function (options) {
   const ghRepoRe = /^https?:\/\/github\.com\/([\da-z][-\da-z]{0,38})\/((?:\.git[\w-]|\.(?!git)|[\w-])+)/i
 
   const parserOptions = {
-    extensions: [syntax],
+    extensions: [gfmAutolinkLiteral],
     mdastExtensions: [gfmAutolinkLiteralFromMarkdown]
   }
 
@@ -47,42 +43,32 @@ export default function (options) {
     listItemIndent: 'one',
     handlers: {
       inlineCode (node) {
-        return style.inlineCode(node.value || '')
+        return style.inlineCode(safe(node.value))
       },
       link (node, parent, context) {
         if (!node.url) {
-          return defaultHandlers.link(node, parent, context)
+          return safe(toString(node))
         }
 
         if (!hyperlinks || !httpRe.test(node.url)) {
-          return node.url
+          return safe(node.url)
         }
 
-        const exit = context.enter('link')
-        const label = isAutolink(node, context) ? shortUrl(node.url) : phrasing(node, context, {})
-
-        exit()
-
+        const label = autolink(node, context) ? shortUrl(node.url) : safe(toString(node))
         return ansiEscapes.link(label, node.url)
       },
       heading (node, parent, context) {
-        return style.heading(defaultHandlers.heading(node, parent, context))
+        const depth = Math.max(Math.min(6, node.depth || 1), 1)
+        const prefix = '#'.repeat(depth)
+        const value = safe(toString(node))
+
+        return style.heading(value ? prefix + ' ' + value : prefix)
       },
       emphasis (node, parent, context) {
-        const exit = context.enter('emphasis')
-        const value = phrasing(node, context, {})
-
-        exit()
-
-        return style.emphasis(value)
+        return style.emphasis(safe(toString(node)))
       },
       strong (node, parent, context) {
-        const exit = context.enter('strong')
-        const value = phrasing(node, context, {})
-
-        exit()
-
-        return style.strong(value)
+        return style.strong(safe(toString(node)))
       },
       thematicBreak (node, parent, context) {
         return style.thematicBreak('—'.repeat(width))
@@ -127,7 +113,7 @@ export default function (options) {
       return style.inlineCode(packageName)
     }
 
-    return normalizeUrl(url, { stripProtocol: true, stripWWW: true })
+    return safe(normalizeUrl(url, { stripProtocol: true, stripWWW: true }))
   }
 }
 
@@ -149,4 +135,31 @@ function supportsHyperlinks (stream) {
 
 function isWindowsTerminal () {
   return !!process.env.WT_SESSION
+}
+
+function hasSingleChild (node, type) {
+  return node.children &&
+    node.children.length === 1 &&
+    node.children[0].type === type
+}
+
+function safe (str) {
+  return stripAnsi(String(str || ''))
+}
+
+// Adapted from `mdast-util-to-markdown`, MIT © Titus Wormer
+function autolink (node, context) {
+  return Boolean(
+    // If there's a url and no title...
+    (node.url && !node.title) &&
+    // And the content of `node` is a single text node...
+    hasSingleChild(node, 'text') &&
+    // And the url is the same as the content...
+    (node.url === node.children[0].value || node.url === 'mailto:' + node.children[0].value) &&
+    // And that starts w/ a protocol...
+    /^[a-z][a-z+.-]+:/i.test(node.url) &&
+    // And that doesn't contain ASCII control codes (character escapes and
+    // references don't work) or angle brackets...
+    !/[\0- <>\u007F]/.test(node.url)
+  )
 }

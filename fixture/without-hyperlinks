@@ -14,4 +14,4 @@ Package: https://www.npmjs.com/package/markdown-to-ansi
 
 - [1mfoo[22m
 - [3mbar[23m
-- [1m[3mbaz[23m[22m
+- [1mbaz[22m

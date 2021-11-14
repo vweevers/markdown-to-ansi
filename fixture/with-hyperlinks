@@ -2,7 +2,7 @@
 
 Literal url: ]8;;https://example.comexample.com]8;;
 Markdown link: ]8;;https://example.combeep]8;;
-With formatting: ]8;;https://example.com[36mboop[39m]8;;
+With formatting: ]8;;https://example.comboop]8;;
 PR: ]8;;https://github.com/vweevers/markdown-to-ansi/pull/1vweevers/markdown-to-ansi#1]8;;
 Commit: ]8;;https://github.com/vweevers/markdown-to-ansi/commit/1234567vweevers/markdown-to-ansi@1234567]8;;
 Repo: ]8;;https://github.com/vweevers/markdown-to-ansi[36mvweevers/markdown-to-ansi[39m]8;;
@@ -14,4 +14,4 @@ Package: ]8;;https://www.npmjs.com/package/markdown-to-ansi[36mmarkdown-to-an
 
 - [1mfoo[22m
 - [3mbar[23m
-- [1m[3mbaz[23m[22m
+- [1mbaz[22m

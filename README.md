@@ -15,7 +15,7 @@ Meant for short snippets of markdown, `markdown-to-ansi` supports a subset of (G
 - Links. If [the terminal does not support hyperlinks]((https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda#supporting-apps)), only the url is returned.
 - Literal urls. GitHub and npm urls are shortened (see example below).
 - Emphasis and strong
-- Headings (only one level)
+- Headings
 - Thematic breaks (`---`)
 
 Other markdown is simply returned as markdown (not necessarily as-is because it does go through a parser). Pull requests are welcome to support additional markdown syntax. It's easy to extend because `markdown-to-ansi` is built on the [`micromark`](https://github.com/micromark/micromark) parser and friends.
