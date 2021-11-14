@@ -2,10 +2,11 @@
 
 **Convert markdown to ansi with support of hyperlinks.**
 
-[![npm status](http://img.shields.io/npm/v/markdown-to-ansi.svg)](https://www.npmjs.org/package/markdown-to-ansi)
+[![npm](http://img.shields.io/npm/v/markdown-to-ansi.svg)](https://www.npmjs.org/package/markdown-to-ansi)
 [![node](https://img.shields.io/node/v/markdown-to-ansi.svg)](https://www.npmjs.org/package/markdown-to-ansi)
-![Test](https://github.com/vweevers/markdown-to-ansi/workflows/Test/badge.svg?branch=main)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Test](https://img.shields.io/github/workflow/status/vweevers/markdown-to-ansi/Test?label=test)](https://github.com/vweevers/hallmark/actions/workflows/test.yml)
+[![JavaScript Style Guide](https://img.shields.io/badge/standard-informational?logo=javascript&logoColor=fff)](https://standardjs.com)
+[![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
 ## Features
 

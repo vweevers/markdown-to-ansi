@@ -10,7 +10,8 @@
     "test": "standard && depcheck && node test.js"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "ansi-escapes": "^5.0.0",
