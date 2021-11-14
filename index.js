@@ -1,19 +1,17 @@
-'use strict'
-
-const fromMarkdown = require('mdast-util-from-markdown')
-const toMarkdown = require('mdast-util-to-markdown')
-const syntax = require('micromark-extension-gfm-autolink-literal')
-const autolinkLiteral = require('mdast-util-gfm-autolink-literal')
-const sh = require('supports-hyperlinks').supportsHyperlink
-const ansiEscapes = require('ansi-escapes')
-const stripAnsi = require('strip-ansi')
-const chalk = require('chalk')
-const normalizeUrl = require('normalize-url')
+import fromMarkdown from 'mdast-util-from-markdown'
+import toMarkdown from 'mdast-util-to-markdown'
+import syntax from 'micromark-extension-gfm-autolink-literal'
+import autolinkLiteral from 'mdast-util-gfm-autolink-literal'
+import { supportsHyperlink as sh } from 'supports-hyperlinks'
+import ansiEscapes from 'ansi-escapes'
+import stripAnsi from 'strip-ansi'
+import chalk from 'chalk'
+import normalizeUrl from 'normalize-url'
 
 // TODO: avoid internals
-const isAutolink = require('mdast-util-to-markdown/lib/util/format-link-as-autolink')
-const phrasing = require('mdast-util-to-markdown/lib/util/container-phrasing')
-const defaultHandlers = require('mdast-util-to-markdown/lib/handle')
+import isAutolink from 'mdast-util-to-markdown/lib/util/format-link-as-autolink.js'
+import phrasing from 'mdast-util-to-markdown/lib/util/container-phrasing.js'
+import defaultHandlers from 'mdast-util-to-markdown/lib/handle/index.js'
 
 const defaultStyle = {
   inlineCode: chalk.cyan,
@@ -23,7 +21,7 @@ const defaultStyle = {
   thematicBreak: chalk.dim
 }
 
-module.exports = function (options) {
+export default function (options) {
   options = options || {}
 
   const style = { ...defaultStyle, ...options.style }

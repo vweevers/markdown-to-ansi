@@ -4,6 +4,8 @@
   "description": "Convert markdown to ansi with support of hyperlinks",
   "license": "MIT",
   "author": "Vincent Weevers",
+  "type": "module",
+  "exports": "./index.js",
   "scripts": {
     "test": "standard && depcheck && node test.js"
   },
@@ -36,6 +38,6 @@
     "terminal"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12.20"
   }
 }

@@ -22,7 +22,9 @@ Other markdown is simply returned as markdown (not necessarily as-is because it 
 
 ## Usage
 
-`example.md`:
+_This package is ESM-only._
+
+Given an `example.md`:
 
 ```
 ## Links
@@ -44,13 +46,14 @@ Package: https://www.npmjs.com/package/markdown-to-ansi
 - **_baz_**
 ```
 
-`example.js`:
+And running the following `example.js`:
 
 ```js
-const transform = require('markdown-to-ansi')()
-const fs = require('fs')
+import markdownToAnsi from 'markdown-to-ansi'
+import fs from 'fs'
 
 const markdown = fs.readFileSync('example.md', 'utf8')
+const transform = markdownToAnsi()
 const result = transform(markdown)
 
 console.log(result)
@@ -79,7 +82,7 @@ Results in:
 
 ## API
 
-### `transform = require('markdown-to-ansi')([options])`
+### `transform = markdownToAnsi([options])`
 
 Factory that returns a `transform` function. Options:
 

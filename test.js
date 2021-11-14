@@ -1,8 +1,6 @@
-'use strict'
-
-const test = require('tape')
-const fs = require('fs')
-const toAnsi = require('.')
+import test from 'tape'
+import fs from 'fs'
+import toAnsi from './index.js'
 
 test('with hyperlinks', function (t) {
   enableHyperlinks(true)
